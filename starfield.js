@@ -4,15 +4,15 @@ var raf;
 
 canvas.width = window.innerWidth;
 
-var Star = function(){
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.z = Math.random() * canvas.width;
+var Star = function(x, y, dy, dx, radius){
+    this.x = x;
+    this.y = y;
+    // this.z = Math.random() * canvas.width;
 
-    this.dy = Math.random() * 5;
-    this.dx = Math.random() * 1;
+    this.dy = dy;
+    this.dx = dy;
     
-    this.radius = (Math.random() * 10) +3;
+    this.radius = radius;
     this.color = '#EEE222';
 
     this.draw = function(){
@@ -25,13 +25,20 @@ var Star = function(){
     }
     this.update = function(){
         this.y += this.dy;
+        if(this.y > canvas.height){
+            this.y = (Math.random() * -100) - 100;
+        }
         // this.x += this.dx;
     }
 }
 
 var stars = [];
 for (let i = 0; i < 100; i++)
-    stars.push(new Star());
+    stars.push(new Star(Math.random() * canvas.width,
+                        (Math.random() * -100) - 200,
+                        Math.random() * 5,
+                        Math.random() * 1,
+                        (Math.random() * 10) + 3));
 
 var starfield = function(){
 
