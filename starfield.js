@@ -12,7 +12,7 @@ var Star = function(x, y, dy, dx, radius){
     this.dy = dy;
     this.dx = dy;
     
-    this.radius = radius;
+    this.radius = radius * (dy/2);
     this.color = '#EEE222';
 
     this.draw = function(){
@@ -35,10 +35,10 @@ var Star = function(x, y, dy, dx, radius){
 var stars = [];
 for (let i = 0; i < 100; i++)
     stars.push(new Star(Math.random() * canvas.width,
-                        (Math.random() * -100) - 200,
-                        Math.random() * 5,
-                        Math.random() * 1,
-                        (Math.random() * 10) + 3));
+                        (Math.random() * -300) - 100,
+                        Math.random() * 5 + 1,
+                        Math.random() * 1 + 1,
+                        (Math.random() * 3) + 1));
 
 var starfield = function(){
 
