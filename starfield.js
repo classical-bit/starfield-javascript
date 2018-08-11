@@ -2,16 +2,16 @@ var canvas = document.getElementById('can');
 var context = canvas.getContext('2d');
 var raf;
 
+
 canvas.width = window.innerWidth;
 
 var Star = function(x, y, dx, dy, radius){
     this.x = x;
     this.y = y;
-    // this.z = Math.random() * canvas.width;
 
     this.dy = dy;
-    this.dx = dy;
-    
+    this.dx = dx;
+
     this.radius = radius * (dy/2);
     this.color = '#EEE222';
 
@@ -24,23 +24,26 @@ var Star = function(x, y, dx, dy, radius){
         context.fill();
     }
     this.update = function(){
+
         this.y += this.dy;
         this.x += this.dx;
+
         if (this.y > canvas.height || this.x > canvas.width){
             this.x = Math.random() * canvas.width;
-            this.y = (Math.random() * -100) - 100;
+            this.y = (Math.random() * -500) - 50;
+            this.radius = Math.random() * 5 + 1;
         }
         
     }
 }
 
 var stars = [];
-for (let i = 0; i < 1000; i++)
-    stars.push(new Star(/* X */ Math.random() * (canvas.width * (3/2)) - (canvas.width/3),
-                        /* Y */ (Math.random() * -300) - 100,
-                        /* DX */ 1,
-                        /* DY */ Math.random() * 1 + 1,
-                        /* RADIUS */ (Math.random() * 3) + 1));
+for (let i = 0; i < 500; i++)
+    stars.push(new Star(/* X */ Math.random() * canvas.width,
+                        /* Y */ (Math.random() * -500) - 50,
+                        /* DX */ 0,
+                        /* DY */ Math.random() * 0.5 + 1,
+                        /* RADIUS */ (Math.random() * 5) + 1));
 
 var starfield = function(){
 
